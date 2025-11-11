@@ -478,6 +478,14 @@
             z-index: 10000;
             transition: all 0.3s ease;
             border: 3px solid rgba(255, 255, 255, 0.9);
+            /* Initially hidden, shown after welcome screen */
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .music-control.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .music-control:hover {
@@ -500,7 +508,7 @@
 
         .music-icon {
             font-size: 1.8em;
-            color: rgb(42, 11, 11);
+            color: white;
         }
 
         .music-tooltip {
@@ -528,46 +536,236 @@
             margin-bottom: clamp(30px, 5vw, 50px);
         }
 
-        /* Responsive */
+        /* Welcome Overlay Screen */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Beautiful translucent overlay with soft gradient background */
+            background: linear-gradient(135deg, rgba(255, 238, 248, 0.9), rgba(227, 242, 253, 0.9));
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out; /* 0.8s transition */
+        }
+
+        .welcome-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .welcome-content {
+            text-align: center;
+            padding: 20px;
+            /* Added to center contents better */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .welcome-overlay h1 {
+            /* Large welcoming message: "Welcome, My Sweet Pantua! 🎉" */
+            font-size: clamp(2.5em, 6vw, 4.5em);
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #ffa8c5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .welcome-overlay p {
+            /* Playful text: "Madam pls turn on the music 😉" */
+            font-size: clamp(1.2em, 3vw, 1.8em);
+            color: #8e44ad;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* Large pulsing music button (🎵) in the center */
+        .music-start-button {
+            width: clamp(120px, 18vw, 160px);
+            height: clamp(120px, 18vw, 160px);
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            /* Adjust shadow for softer pulse effect */
+            box-shadow: 0 0 0 0 rgba(255, 107, 157, 0.7);
+            transition: all 0.3s ease;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            animation: pulse-ring 1.5s ease-out infinite; /* New, softer pulse animation */
+            position: relative;
+            margin-bottom: 60px; /* Space for hint text below */
+            z-index: 1000;
+        }
+
+        .music-start-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 0 rgba(255, 107, 157, 0.7); /* Stop ring pulse on hover */
+            animation: none;
+        }
+
+        .music-start-button::before {
+            content: '🎵';
+            font-size: clamp(3em, 6vw, 4.5em);
+            position: absolute;
+            color: white; /* Ensure the music note is visible */
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes pulse-ring {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 157, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 25px rgba(255, 107, 157, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 157, 0);
+            }
+        }
+
+        .welcome-hint {
+            /* Hint text: "Click the button to begin ✨" */
+            margin-top: -30px; /* Pull up closer to the button */
+            font-size: clamp(1em, 2vw, 1.2em);
+            color: #c44569;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* Floating decorative elements on welcome screen */
+        .welcome-decor {
+            position: absolute;
+            font-size: clamp(2em, 4vw, 3em);
+            animation: floatAround 8s ease-in-out infinite;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Adjusted positions for decorative elements (💕🦋✨🎂) */
+        .welcome-decor.decor-1 {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .welcome-decor.decor-2 {
+            top: 10%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .welcome-decor.decor-3 {
+            bottom: 10%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .welcome-decor.decor-4 {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        /* Added a decorative element next to the button area for balance, like the cake in the image */
+        .welcome-content > .decorative-element {
+            font-size: clamp(3em, 6vw, 4.5em);
+            position: absolute;
+            top: 50%; /* Center vertically with button group */
+            left: 50%; /* Center horizontally */
+            transform: translate(120px, -100px); /* Offset from center to the right/top */
+            opacity: 0.8;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatAround {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(-5deg);
+            }
+        }
+        
+        /* Responsive adjustments for welcome screen */
         @media (max-width: 768px) {
-            .hero {
-                padding: 30px 15px;
+            .welcome-overlay h1 {
+                margin-bottom: 5px;
             }
-            
-            .photo-featured::before {
-                top: -35px;
-                padding: 8px 18px;
+            .welcome-overlay p {
+                margin-bottom: 25px;
             }
-
-            .balloon {
-                display: none; /* Hide balloons on very small screens for cleaner look */
+            .music-start-button {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 40px;
+            }
+            .welcome-hint {
+                margin-top: -20px;
+            }
+            .welcome-content > .decorative-element {
+                transform: translate(80px, -50px);
             }
         }
+        
+        /* The rest of the CSS remains the same as your original file... */
 
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .memory-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* Music Control Button Visibility Fix */
+        .music-control {
+            /* ... existing styles ... */
+            opacity: 0;
+            pointer-events: none;
         }
 
-        @media (min-width: 1025px) {
-            .memory-cards {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .music-control.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
     </style>
 </head>
 <body>
-    <!-- Floating Hearts Background -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-content">
+            <h1>Welcome, My Sweet Pantua! <span style="font-size: 0.8em;">🎉</span></h1>
+            <p>Madam pls turn on the music <span style="font-size: 1.2em;">😉</span></p>
+            
+            <div class="music-start-button" onclick="startExperience()"></div>
+            
+            <span class="decorative-element" style="color:#c44569;">🎂</span>
+
+            <p class="welcome-hint">Click the button to begin <span style="font-size: 1.2em;">✨</span></p>
+        </div>
+        <span class="welcome-decor decor-1" style="color:#ff6b9d;">💕</span>
+        <span class="welcome-decor decor-2" style="color:#8e44ad;">🦋</span>
+        <span class="welcome-decor decor-3" style="color:#ffa8c5;">✨</span>
+        <span class="welcome-decor decor-4" style="color:#c44569;">🎂</span>
+    </div>
+
     <div class="hearts-bg" id="heartsContainer"></div>
-    <!-- <audio id="bgMusic" src="music.mp3" autoplay loop></audio> -->
-    <!-- Hero Section -->
+
     <div class="hero">
         <h1>Happy Birthday Riddhi! 🎉</h1>
         <h2>My Sweet Pantua 💕</h2>
         <p>Today, on 12th November, the universe celebrates the day you came into this world... and into my life. Every moment with you feels like magic.</p>
         
-        <!-- 3D Interactive Cube -->
         <div class="cube-container">
             <div class="cube" id="photoCube">
                 <div class="cube-face front" data-emoji="💕" onclick="revealPhoto(this, 'image1.jpg')">
@@ -593,7 +791,6 @@
         <p class="cube-hint">Click any face to reveal a special photo! ✨</p>
     </div>
 
-    <!-- Memories Section -->
     <section>
         <h2 class="section-title">Our Beautiful Moments 🦋</h2>
         <div class="memory-cards section-spacing">
@@ -612,7 +809,6 @@
         </div>
     </section>
 
-    <!-- Photo Gallery -->
     <section>
         <h2 class="section-title">Cuteness Overload!!</h2>
         <div class="photo-gallery">
@@ -625,7 +821,6 @@
         </div>
     </section>
 
-    <!-- Love Letter -->
     <section>
         <div class="love-letter">
             <h3>To My Dearest Pantua 💌</h3>
@@ -643,14 +838,109 @@
         </div>
     </section>
 
-    <!-- Interactive Balloons -->
     <div class="balloon" style="left: 10%;" onclick="floatAway(this)"></div>
     <div class="balloon" style="left: 30%; background: #ffa8c5;" onclick="floatAway(this)"></div>
     <div class="balloon" style="left: 50%; background: #a8d8ff;" onclick="floatAway(this)"></div>
     <div class="balloon" style="left: 70%; background: #ffb8d9;" onclick="floatAway(this)"></div>
     <div class="balloon" style="left: 90%; background: #c8a8ff;" onclick="floatAway(this)"></div>
 
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="music-control" id="musicControl" onclick="toggleMusic()">
+        <span class="music-icon" id="musicIcon">🔊</span>
+        <div class="music-tooltip" id="musicTooltip">Click to pause music</div>
+    </div>
+
     <script>
+        let musicPlaying = false;
+        const bgMusic = document.getElementById('bgMusic');
+        const musicControl = document.getElementById('musicControl');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicTooltip = document.getElementById('musicTooltip');
+        const welcomeOverlay = document.getElementById('welcomeOverlay');
+        
+        // Set initial volume to 20%
+        bgMusic.volume = 0.2; 
+        
+        // Hide the music control button initially
+        musicControl.classList.remove('visible');
+        musicIcon.textContent = '🔊';
+        musicTooltip.textContent = 'Click to pause music';
+
+
+        function createHeartBurst(count, x, y, duration = 1000) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💕';
+                    heart.style.position = 'fixed';
+                    heart.style.left = x + 'px';
+                    heart.style.top = y + 'px';
+                    heart.style.fontSize = '1.5em';
+                    heart.style.zIndex = '9999';
+                    heart.style.pointerEvents = 'none';
+                    document.body.appendChild(heart);
+
+                    const angle = (Math.PI * 2 * i) / count;
+                    const distance = 100 + Math.random() * 100;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+
+                    heart.animate([
+                        { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                        { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`, opacity: 0 }
+                    ], {
+                        duration: duration,
+                        easing: 'ease-out'
+                    });
+
+                    setTimeout(() => heart.remove(), duration);
+                }, i * (duration / count / 2));
+            }
+        }
+
+        function startExperience() {
+            // 1. Start Music (Volume is already set to 0.2)
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+                musicControl.classList.add('playing', 'visible');
+            }).catch(err => {
+                console.error('Music start failed:', err);
+                // Even if blocked, show control to allow user to try again
+                musicControl.classList.add('visible');
+            });
+
+            // 2. Heart Burst (from center of screen)
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            createHeartBurst(30, centerX, centerY, 1200);
+
+            // 3. Fade Overlay
+            welcomeOverlay.classList.add('hidden');
+        }
+
+
+        function toggleMusic() {
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicIcon.textContent = '🎵';
+                musicTooltip.textContent = 'Click to play music';
+                musicControl.classList.remove('playing');
+                musicPlaying = false;
+            } else {
+                bgMusic.play().catch(err => {
+                    console.log('Autoplay prevented:', err);
+                });
+                musicIcon.textContent = '🔊';
+                musicTooltip.textContent = 'Click to pause music';
+                musicControl.classList.add('playing');
+                musicPlaying = true;
+            }
+        }
+
         // Reveal photo on cube face click
         function revealPhoto(face, imageSrc) {
             const cube = document.getElementById('photoCube');
@@ -663,6 +953,9 @@
             
             // Rotate cube to show clicked face
             let rotateX = 0, rotateY = 0;
+            const cubeContainer = document.querySelector('.cube-container');
+            const cubeSize = cubeContainer ? cubeContainer.offsetWidth : 320; // Default if not found
+
             switch(facePosition) {
                 case 'front':
                     rotateX = 0; rotateY = 0;
@@ -691,35 +984,12 @@
             setTimeout(() => {
                 face.classList.add('show-image');
                 
-                // Create heart burst effect
-                for (let i = 0; i < 15; i++) {
-                    setTimeout(() => {
-                        const heart = document.createElement('div');
-                        heart.innerHTML = '💕';
-                        heart.style.position = 'fixed';
-                        heart.style.left = '50%';
-                        heart.style.top = '40%';
-                        heart.style.fontSize = '1.5em';
-                        heart.style.zIndex = '9999';
-                        heart.style.pointerEvents = 'none';
-                        document.body.appendChild(heart);
+                // Create heart burst effect from cube position
+                const rect = face.getBoundingClientRect();
+                const faceCenterX = rect.left + rect.width / 2;
+                const faceCenterY = rect.top + rect.height / 2;
+                createHeartBurst(15, faceCenterX, faceCenterY, 1000);
 
-                        const angle = (Math.PI * 2 * i) / 15;
-                        const distance = 100 + Math.random() * 100;
-                        const tx = Math.cos(angle) * distance;
-                        const ty = Math.sin(angle) * distance;
-
-                        heart.animate([
-                            { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
-                            { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`, opacity: 0 }
-                        ], {
-                            duration: 1000,
-                            easing: 'ease-out'
-                        });
-
-                        setTimeout(() => heart.remove(), 1000);
-                    }, i * 30);
-                }
             }, 1000);
             
             // Resume animation after 5 seconds
@@ -772,7 +1042,7 @@
             }, 2500);
         }
 
-        // Heart explosion effect
+        // Heart explosion effect (for the CTA button)
         function createHeartExplosion() {
             for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
