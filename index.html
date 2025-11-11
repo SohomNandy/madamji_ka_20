@@ -606,7 +606,7 @@
             animation: pulse-ring 1.5s ease-out infinite; /* New, softer pulse animation */
             position: relative;
             margin-bottom: 60px; /* Space for hint text below */
-            z-index: 1000;
+            z-index: 100;
         }
 
         .music-start-button:hover {
@@ -726,18 +726,34 @@
             }
         }
         
-        /* The rest of the CSS remains the same as your original file... */
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30px 15px;
+            }
+            
+            .photo-featured::before {
+                top: -35px;
+                padding: 8px 18px;
+            }
 
-        /* Music Control Button Visibility Fix */
-        .music-control {
-            /* ... existing styles ... */
-            opacity: 0;
-            pointer-events: none;
+            /* --- HIDE BALLOONS ON MOBILE --- */
+            .balloon {
+                display: none; 
+            }
+            /* ------------------------------- */
         }
 
-        .music-control.visible {
-            opacity: 1;
-            pointer-events: auto;
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .memory-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .memory-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
@@ -830,7 +846,7 @@
             <p>Remember that day by the school bus? When you said those three magical words and ran away? I stood there frozen, my heart racing, butterflies dancing in my stomach. That moment, Riddhi, that moment was when I knew - this is it. This is love.</p>
             <p>The way you hold my finger with your whole hand... it's not just adorable, it's everything. It tells me you're here, you're mine, and you're not letting go. And neither am I.</p>
             <p>On this special day, I want you to know that you're not just my girlfriend - you're my best friend, my confidant, my home. You make every ordinary moment extraordinary just by being in it.</p>
-            <p>Happy 20th Birthday, my beautiful Pantua. May your day be as magical as you make my every day. I love you more than words can ever express. 💕</p>
+            <p>Happy 20th Birthday, my favourite girl. May your day be as magical as you make my every day. I love you more than words can ever express. 💕</p>
             <div class="signature">Love Sohom 💝</div>
         </div>
         <div style="text-align: center;">
