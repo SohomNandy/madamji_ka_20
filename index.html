@@ -412,34 +412,6 @@
             font-style: italic;
         }
 
-        /* Interactive Balloon */
-        .balloon {
-            position: fixed;
-            bottom: -100px;
-            width: clamp(60px, 10vw, 80px);
-            height: clamp(75px, 12vw, 100px);
-            background: #ff6b9d;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.5);
-        }
-
-        .balloon::after {
-            content: '';
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            width: 2px;
-            height: 25px;
-            background: #666;
-        }
-
-        .balloon:hover {
-            transform: scale(1.15) translateY(-15px);
-        }
-
         /* Button */
         .cta-button {
             display: inline-block;
@@ -736,12 +708,6 @@
                 top: -35px;
                 padding: 8px 18px;
             }
-
-            /* --- HIDE BALLOONS ON MOBILE --- */
-            .balloon {
-                display: none; 
-            }
-            /* ------------------------------- */
         }
 
         @media (min-width: 769px) and (max-width: 1024px) {
@@ -846,19 +812,13 @@
             <p>Remember that day by the school bus? When you said those three magical words and ran away? I stood there frozen, my heart racing, butterflies dancing in my stomach. That moment, Riddhi, that moment was when I knew - this is it. This is love.</p>
             <p>The way you hold my finger with your whole hand... it's not just adorable, it's everything. It tells me you're here, you're mine, and you're not letting go. And neither am I.</p>
             <p>On this special day, I want you to know that you're not just my girlfriend - you're my best friend, my confidant, my home. You make every ordinary moment extraordinary just by being in it.</p>
-            <p>Happy 20th Birthday, my favourite girl. May your day be as magical as you make my every day. I love you more than words can ever express. 💕</p>
+            <p>Happy 20th Birthday, my beautiful Pantua. May your day be as magical as you make my every day. I love you more than words can ever express. 💕</p>
             <div class="signature">Love Sohom 💝</div>
         </div>
         <div style="text-align: center;">
             <button class="cta-button" onclick="createHeartExplosion()">Click for Magic ✨</button>
         </div>
     </section>
-
-    <div class="balloon" style="left: 10%;" onclick="floatAway(this)"></div>
-    <div class="balloon" style="left: 30%; background: #ffa8c5;" onclick="floatAway(this)"></div>
-    <div class="balloon" style="left: 50%; background: #a8d8ff;" onclick="floatAway(this)"></div>
-    <div class="balloon" style="left: 70%; background: #ffb8d9;" onclick="floatAway(this)"></div>
-    <div class="balloon" style="left: 90%; background: #c8a8ff;" onclick="floatAway(this)"></div>
 
     <audio id="bgMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
@@ -1031,32 +991,6 @@
 
         // Generate hearts periodically
         setInterval(createHeart, 300);
-
-        // Animate balloons on page load
-        window.addEventListener('load', () => {
-            const balloons = document.querySelectorAll('.balloon');
-            balloons.forEach((balloon, index) => {
-                setTimeout(() => {
-                    balloon.style.bottom = '20px';
-                }, index * 200);
-            });
-        });
-
-        // Float balloon away on click
-        function floatAway(balloon) {
-            balloon.style.transition = 'all 2s ease-out';
-            balloon.style.bottom = '150vh';
-            balloon.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
-            setTimeout(() => {
-                balloon.style.bottom = '-100px';
-                balloon.style.transition = 'all 0s';
-                setTimeout(() => {
-                    balloon.style.transition = 'all 2s ease-out';
-                    balloon.style.bottom = '20px';
-                    balloon.style.transform = 'rotate(0deg)';
-                }, 100);
-            }, 2500);
-        }
 
         // Heart explosion effect (for the CTA button)
         function createHeartExplosion() {
