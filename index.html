@@ -461,6 +461,68 @@
             box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
         }
 
+        /* Music Control Button */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+            z-index: 10000;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.7);
+        }
+
+        .music-control.playing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(255, 107, 157, 0.8), 0 0 20px rgba(255, 107, 157, 0.6);
+            }
+        }
+
+        .music-icon {
+            font-size: 1.8em;
+            color: rgb(42, 11, 11);
+        }
+
+        .music-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #c44569;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .music-control:hover .music-tooltip {
+            opacity: 1;
+        }
+
         /* Spacing adjustments */
         .section-spacing {
             margin-bottom: clamp(30px, 5vw, 50px);
@@ -498,7 +560,7 @@
 <body>
     <!-- Floating Hearts Background -->
     <div class="hearts-bg" id="heartsContainer"></div>
-
+    <audio id="bgMusic" src="music.mp3" autoplay loop></audio>
     <!-- Hero Section -->
     <div class="hero">
         <h1>Happy Birthday Riddhi! 🎉</h1>
@@ -544,8 +606,8 @@
                 <p>The way you hold my index finger with your whole hand, like you never want to let go... It's the most precious feeling in the world. In that grip, I feel your love, your trust, and all the tomorrows I want to spend with you.</p>
             </div>
             <div class="memory-card">
-                <h3>✨ Every Little Taunt</h3>
-                <p>Your taunts are the cutest thing I’ve ever experienced. Your words are wrapped in care and compassion, yet they still try to assert a little dominance — and I love that. And those eyes… the way you look at me melts me every single time. Every little thing about you makes my heart skip a beat.</p>
+                <h3>✨ Every Little Daant</h3>
+                <p>Your daants are the cutest thing I have ever experienced. Your words are mixed with care and compassion yet trying to assert dominance. And the way you look at me with those beautiful eyes... Every little thing about you makes my heart skip a beat.</p>
             </div>
         </div>
     </section>
@@ -805,5 +867,3 @@
     </script>
 </body>
 </html>
-
-
