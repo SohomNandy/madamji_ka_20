@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday Riddhi 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ffeef8 0%, #e3f2fd 50%, #fff9f0 100%);
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="16" font-size="16">💕</text></svg>'), auto;
+        }
+
+        /* Floating hearts background */
+        .hearts-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatHeart 8s infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #ffa8c5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: fadeInScale 1.5s ease-out;
+            text-shadow: 2px 2px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            color: #8e44ad;
+            margin-bottom: 30px;
+            animation: fadeInScale 2s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            max-width: 600px;
+            line-height: 1.8;
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 3D Interactive Cube */
+        .cube-container {
+            perspective: 1000px;
+            width: 200px;
+            height: 200px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 10s infinite linear;
+        }
+
+        .cube:hover {
+            animation-play-state: paused;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            border: 3px solid #ff6b9d;
+            background: rgba(255, 255, 255, 0.9);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .cube-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* or 'contain' if you prefer full visibility */
+            border-radius: 0px;
+        }
+
+        .cube-face.front  { transform: rotateY(0deg) translateZ(100px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(100px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(100px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(100px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(100px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+        @keyframes rotateCube {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '✨';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            font-size: 0.5em;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Memory Cards */
+        .memory-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.8);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 107, 157, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+        }
+
+        .memory-card h3 {
+            color: #c44569;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .memory-card p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            aspect-ratio: 3/4;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 50px rgba(255, 107, 157, 0.4);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* or 'contain' if you prefer full visibility */
+            border-radius: 10px;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Special styling for the featured photo */
+        .photo-special {
+            border: 3px solid #ff6b9d;
+            box-shadow: 0 15px 50px rgba(255, 107, 157, 0.5);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .photo-featured {
+            border: 4px solid #c44569;
+            box-shadow: 0 20px 60px rgba(196, 69, 105, 0.6);
+        }
+
+        .photo-featured video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* or 'contain' if you prefer full visibility */
+            border-radius: 10px;
+        }
+
+        .photo-featured::before {
+            content: '💑 Us Forever 💑';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            z-index: 10;
+            white-space: nowrap;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 15px 50px rgba(255, 107, 157, 0.5);
+            }
+            50% {
+                box-shadow: 0 15px 60px rgba(255, 107, 157, 0.8), 0 0 30px rgba(255, 107, 157, 0.5);
+            }
+        }
+
+        .love-letter {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.95));
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 60px 40px;
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 3px solid rgba(255, 107, 157, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-letter::before {
+            content: '💕';
+            position: absolute;
+            font-size: 15em;
+            opacity: 0.05;
+            top: -50px;
+            right: -50px;
+            transform: rotate(-15deg);
+        }
+
+        .love-letter h3 {
+            font-size: 2.5em;
+            color: #c44569;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .love-letter p {
+            font-size: 1.3em;
+            line-height: 2;
+            color: #444;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .signature {
+            text-align: right;
+            font-size: 1.5em;
+            color: #8e44ad;
+            margin-top: 40px;
+            font-style: italic;
+        }
+
+        /* Interactive Balloon */
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            width: 80px;
+            height: 100px;
+            background: #ff6b9d;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background: #666;
+        }
+
+        .balloon:hover {
+            transform: scale(1.2) translateY(-20px);
+        }
+
+        /* Button */
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .hero h2 { font-size: 1.8em; }
+            .section-title { font-size: 2em; }
+            .cube-container { width: 200px; height: 200px; }
+            .cube-face { 
+                width: 200px; 
+                height: 200px;
+                font-size: 2em;
+            }
+            .cube-face.front  { transform: rotateY(0deg) translateZ(100px); }
+            .cube-face.back   { transform: rotateY(180deg) translateZ(100px); }
+            .cube-face.right  { transform: rotateY(90deg) translateZ(100px); }
+            .cube-face.left   { transform: rotateY(-90deg) translateZ(100px); }
+            .cube-face.top    { transform: rotateX(90deg) translateZ(100px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+            .cube-face::before {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Happy Birthday Riddhi! 🎉</h1>
+        <h2>My Sweet Pantua 💕</h2>
+        <p>Today, on 12th November, the universe celebrates the day you came into this world... and into my life. Every moment with you feels like magic.</p>
+        
+        <!-- 3D Interactive Cube -->
+        <div class="cube-container">
+            <div class="cube" id="photoCube">
+                <div class="cube-face front" data-emoji="💕" onclick="revealPhoto(this, 'image1.jpg')">
+                    <img src="image1.jpg" alt="Riddhi">
+                </div>
+                <div class="cube-face back" data-emoji="🎂" onclick="revealPhoto(this, 'image2.jpg')">
+                    <img src="image2.jpg" alt="Riddhi">
+                </div>
+                <div class="cube-face right" data-emoji="✨" onclick="revealPhoto(this, 'image3.jpg')">
+                    <img src="image3.jpg" alt="Riddhi">
+                </div>
+                <div class="cube-face left" data-emoji="🦋" onclick="revealPhoto(this, 'image4.jpg')">
+                    <img src="image4.jpg" alt="Riddhi">
+                </div>
+                <div class="cube-face top" data-emoji="💝" onclick="revealPhoto(this, 'image5.jpg')">
+                    <img src="image5.jpg" alt="Riddhi">
+                </div>
+                <div class="cube-face bottom" data-emoji="🌸" onclick="revealPhoto(this, 'image6.jpg')">
+                    <img src="image6.jpg" alt="Riddhi">
+                </div>
+            </div>
+        </div>
+        <p style="font-size: 0.9em; color: #999; margin-top: 20px;">Click any face to reveal a special photo! ✨</p>
+    </div>
+
+    <!-- Memories Section -->
+    <section>
+        <h2 class="section-title">Our Beautiful Moments 🦋</h2>
+        <div class="memory-cards">
+            <div class="memory-card">
+                <h3>🚌 The School Bus Moment</h3>
+                <p>That day when you said "I love you" for the first time and ran into the school bus... time stopped. My heart exploded with butterflies, and I stood there, completely awestruck. That moment is etched in my soul forever.</p>
+            </div>
+            <div class="memory-card">
+                <h3>👉💫 Your Tiny Hand in Mine</h3>
+                <p>The way you hold my index finger with your whole hand, like you never want to let go... It's the most precious feeling in the world. In that grip, I feel your love, your trust, and all the tomorrows I want to spend with you.</p>
+            </div>
+            <div class="memory-card">
+                <h3>✨ Every Little Daant</h3>
+                <p>Your daants are the cutest thing i have ever experienced. Your word is mixed with care and compassion yet trying to assrt dominance. And the way you look at me with those beautiful eyes.. Every little thing about you makes my heart skip a beat.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section>
+        <h2 class="section-title">Cuteness Overload!!</h2>
+        <div class="photo-gallery">
+        <div class="photo-item photo-featured">
+            <video autoplay muted loop playsinline style="width: 100%; border-radius: 10px;">
+                <source src="cute.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        </div>
+    </section>
+
+    <!-- Love Letter -->
+    <section>
+        <div class="love-letter">
+            <h3>To My Dearest Pantua 💌</h3>
+            <p>From the moment you entered my life, everything changed. You brought colors I never knew existed, melodies I never heard, and feelings I never thought possible.</p>
+            <p>Your smile is my favorite view. Your laugh is my favorite sound. Your happiness is my favorite mission. And loving you is my favorite adventure.</p>
+            <p>I always do speak of this one memory on your birthday as it is one of the luckiest days of my life.</p>
+            <p>Remember that day by the school bus? When you said those three magical words and ran away? I stood there frozen, my heart racing, butterflies dancing in my stomach. That moment, Riddhi, that moment was when I knew - this is it. This is love.</p>
+            <p>The way you hold my finger with your whole hand... it's not just adorable, it's everything. It tells me you're here, you're mine, and you're not letting go. And neither am I.</p>
+            <p>On this special day, I want you to know that you're not just my girlfriend - you're my best friend, my confidant, my home. You make every ordinary moment extraordinary just by being in it.</p>
+            <p>Happy 20th Birthday, my beautiful Pantua. May your day be as magical as you make my every day. I love you more than words can ever express. 💕</p>
+            <div class="signature">Love Sohom 💝</div>
+        </div>
+        <div style="text-align: center;">
+            <a href="#" class="cta-button" onclick="createHeartExplosion(); return false;">Click for Magic ✨</a>
+        </div>
+    </section>
+
+    <!-- Interactive Balloons -->
+    <div class="balloon" style="left: 10%;" onclick="floatAway(this)"></div>
+    <div class="balloon" style="left: 30%; background: #ffa8c5;" onclick="floatAway(this)"></div>
+    <div class="balloon" style="left: 50%; background: #a8d8ff;" onclick="floatAway(this)"></div>
+    <div class="balloon" style="left: 70%; background: #ffb8d9;" onclick="floatAway(this)"></div>
+    <div class="balloon" style="left: 90%; background: #c8a8ff;" onclick="floatAway(this)"></div>
+
+    <script>
+        // Reveal photo on cube face click
+        function revealPhoto(face, imageSrc) {
+            const cube = document.getElementById('photoCube');
+            const allFaces = document.querySelectorAll('.cube-face');
+            
+            // Pause the animation
+            cube.style.animationPlayState = 'paused';
+            
+            // Get the face's class (front, back, right, etc.)
+            const facePosition = face.classList[1];
+            
+            // Rotate cube to show clicked face
+            let rotateX = 0, rotateY = 0;
+            switch(facePosition) {
+                case 'front':
+                    rotateX = 0; rotateY = 0;
+                    break;
+                case 'back':
+                    rotateX = 0; rotateY = 180;
+                    break;
+                case 'right':
+                    rotateX = 0; rotateY = -90;
+                    break;
+                case 'left':
+                    rotateX = 0; rotateY = 90;
+                    break;
+                case 'top':
+                    rotateX = -90; rotateY = 0;
+                    break;
+                case 'bottom':
+                    rotateX = 90; rotateY = 0;
+                    break;
+            }
+            
+            cube.style.animation = 'none';
+            cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            
+            // Show the image after rotation
+            setTimeout(() => {
+                face.classList.add('show-image');
+                
+                // Create heart burst effect
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.innerHTML = '💕';
+                        heart.style.position = 'fixed';
+                        heart.style.left = '50%';
+                        heart.style.top = '40%';
+                        heart.style.fontSize = '1.5em';
+                        heart.style.zIndex = '9999';
+                        heart.style.pointerEvents = 'none';
+                        document.body.appendChild(heart);
+
+                        const angle = (Math.PI * 2 * i) / 15;
+                        const distance = 100 + Math.random() * 100;
+                        const tx = Math.cos(angle) * distance;
+                        const ty = Math.sin(angle) * distance;
+
+                        heart.animate([
+                            { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                            { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`, opacity: 0 }
+                        ], {
+                            duration: 1000,
+                            easing: 'ease-out'
+                        });
+
+                        setTimeout(() => heart.remove(), 1000);
+                    }, i * 30);
+                }
+            }, 1000);
+            
+            // Resume animation after 5 seconds
+            setTimeout(() => {
+                face.classList.remove('show-image');
+                cube.style.animation = 'rotateCube 20s infinite linear';
+            }, 5000);
+        }
+
+        // Create floating hearts
+        function createHeart() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['💕', '💝', '💖', '💗', '💓', '🦋', '✨'][Math.floor(Math.random() * 7)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 10000);
+        }
+
+        // Generate hearts periodically
+        setInterval(createHeart, 300);
+
+        // Animate balloons on page load
+        window.addEventListener('load', () => {
+            const balloons = document.querySelectorAll('.balloon');
+            balloons.forEach((balloon, index) => {
+                setTimeout(() => {
+                    balloon.style.bottom = '20px';
+                }, index * 200);
+            });
+        });
+
+        // Float balloon away on click
+        function floatAway(balloon) {
+            balloon.style.transition = 'all 2s ease-out';
+            balloon.style.bottom = '150vh';
+            balloon.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+            setTimeout(() => {
+                balloon.style.bottom = '-100px';
+                balloon.style.transition = 'all 0s';
+                setTimeout(() => {
+                    balloon.style.transition = 'all 2s ease-out';
+                    balloon.style.bottom = '20px';
+                    balloon.style.transform = 'rotate(0deg)';
+                }, 100);
+            }, 2500);
+        }
+
+        // Heart explosion effect
+        function createHeartExplosion() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💕';
+                    heart.style.position = 'fixed';
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    heart.style.fontSize = '2em';
+                    heart.style.zIndex = '9999';
+                    heart.style.pointerEvents = 'none';
+                    document.body.appendChild(heart);
+
+                    const angle = (Math.PI * 2 * i) / 50;
+                    const velocity = 200 + Math.random() * 200;
+                    const tx = Math.cos(angle) * velocity;
+                    const ty = Math.sin(angle) * velocity;
+
+                    heart.animate([
+                        { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                        { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`, opacity: 0 }
+                    ], {
+                        duration: 1500,
+                        easing: 'cubic-bezier(0, .9, .57, 1)'
+                    });
+
+                    setTimeout(() => heart.remove(), 1500);
+                }, i * 20);
+            }
+        }
+
+        // Mouse trail hearts
+        let lastHeartTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastHeartTime > 100) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '✨';
+                heart.style.position = 'fixed';
+                heart.style.left = e.clientX + 'px';
+                heart.style.top = e.clientY + 'px';
+                heart.style.fontSize = '1em';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '9999';
+                heart.style.transform = 'translate(-50%, -50%)';
+                document.body.appendChild(heart);
+
+                heart.animate([
+                    { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+                    { opacity: 0, transform: 'translate(-50%, -100px) scale(0)' }
+                ], {
+                    duration: 1000,
+                    easing: 'ease-out'
+                });
+
+                setTimeout(() => heart.remove(), 1000);
+                lastHeartTime = now;
+            }
+        });
+
+        // Add click sparkle effect
+        document.addEventListener('click', (e) => {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = e.clientX + 'px';
+                    sparkle.style.top = e.clientY + 'px';
+                    sparkle.style.fontSize = '1.5em';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.zIndex = '9999';
+                    document.body.appendChild(sparkle);
+
+                    const angle = (Math.PI * 2 * i) / 10;
+                    const distance = 50 + Math.random() * 50;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+
+                    sparkle.animate([
+                        { transform: 'translate(-50%, -50%) scale(1) rotate(0deg)', opacity: 1 },
+                        { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0) rotate(360deg)`, opacity: 0 }
+                    ], {
+                        duration: 800,
+                        easing: 'ease-out'
+                    });
+
+                    setTimeout(() => sparkle.remove(), 800);
+                }, i * 50);
+            }
+        });
+    </script>
+</body>
+</html>
